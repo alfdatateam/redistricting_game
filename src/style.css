@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Roboto Condensed', 'Roboto', system-ui, sans-serif;
+  font-family: 'Roboto', system-ui, sans-serif;
   background: #fff;
   color: #005067;
   display: flex;
@@ -19,43 +19,75 @@ body {
 
 #app {
   width: 100%;
-  max-width: 500px;
+  max-width: 1500px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 48px;
+  position: relative;
+}
+
+/* STF Logo */
+.stf-logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 64px;
+  height: 64px;
+}
+
+/* Section layout */
+.game-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 h1 {
-  font-size: 28px;
+  font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
   color: #cb0034;
   text-align: center;
   line-height: 1.2;
 }
 
 .instructions {
-  font-size: 16px;
   font-weight: 700;
+  font-size: 18px;
   text-align: center;
   line-height: 1.4;
+  color: #005067;
+}
+
+/* Goal label */
+.goal-label {
+  font-size: 15px;
+  text-align: center;
+  color: #005067;
+  line-height: 1.4;
+  min-height: 44px;
+  white-space: pre-line;
 }
 
 /* District selector */
 .district-picker {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .district-btn {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 3px solid transparent;
   cursor: pointer;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
   transition: border-color 0.15s, transform 0.15s;
   display: flex;
@@ -72,26 +104,31 @@ h1 {
   transform: scale(1.1);
 }
 
+/* Grid card (one grid unit) */
+.grid-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
 /* SVG grid */
 .grid-container {
   width: 100%;
-  aspect-ratio: 1;
-  max-width: 400px;
+  max-width: 380px;
 }
 
 .grid-container svg {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Dots */
 .dot {
   cursor: pointer;
-  transition: r 0.12s, stroke-width 0.12s;
-}
-
-.dot:hover {
-  r: 22;
+  transition: stroke-width 0.12s;
 }
 
 /* Boundary paths */
@@ -106,9 +143,9 @@ h1 {
 
 /* Feedback area */
 .feedback {
-  font-size: 15px;
+  font-size: 13px;
   text-align: center;
-  min-height: 48px;
+  min-height: 36px;
   line-height: 1.4;
 }
 
@@ -116,15 +153,28 @@ h1 {
   font-weight: 700;
 }
 
+.result-summary {
+  color: #005067;
+  font-weight: 700;
+}
+
+.result-pass {
+  color: #2e7d32;
+}
+
+.result-fail {
+  color: #cb0034;
+}
+
 /* Reset button */
 .reset-btn {
-  padding: 10px 28px;
+  padding: 8px 20px;
   border: 2px solid #005067;
   border-radius: 6px;
   background: transparent;
   color: #005067;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
 }
@@ -132,4 +182,103 @@ h1 {
 .reset-btn:hover {
   background: #005067;
   color: #fff;
+}
+
+/* --- Swiper --- */
+.swiper-wrapper {
+  width: 100%;
+}
+
+.swiper-tabs {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.swiper-tab {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #005067;
+  background: transparent;
+  color: #005067;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.swiper-tab.active {
+  background: #005067;
+  color: #fff;
+}
+
+.swiper-slides {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.swiper-slide {
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Desktop: show all 3 side by side */
+@media (min-width: 900px) {
+  .swiper-tabs {
+    display: none !important;
+  }
+
+  .swiper-slides {
+    display: flex;
+    gap: 24px;
+    transform: none !important;
+  }
+
+  .swiper-slide {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .grid-container {
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 52px;
+  }
+
+  .instructions {
+    font-size: 22px;
+  }
+}
+
+/* Mobile: show swiper tabs */
+@media (max-width: 899px) {
+  .swiper-wrapper {
+    overflow: hidden;
+  }
+
+  .swiper-tabs {
+    display: flex;
+  }
+
+  .swiper-slides {
+    width: 100%;
+  }
+
+  .swiper-slide {
+    flex: 0 0 100%;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .stf-logo {
+    width: 48px;
+    height: 48px;
+  }
 }
