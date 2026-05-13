@@ -19,6 +19,8 @@ export interface LevelConfig {
   goalCriteria: GoalCriteria;
   dotRadius: number;
   cellSize: number;
+  successTitle?: string;
+  successMessage?: string;
 }
 
 // --- 5×5 Grid ---
@@ -124,6 +126,8 @@ export const SECTION1_LEVELS: LevelConfig[] = [
     goalCriteria: { minOrangeMajority: 3, minGreenMajority: 0, label: 'Maximize Orange' },
     dotRadius: 18,
     cellSize: 60,
+    successTitle: 'PACKING',
+    successMessage: 'This a redistricting technique called "packing." By packing the majority green dots into as few districts as possible, you give the orange dots more power.',
   },
   {
     id: 'gerry-2',
@@ -134,6 +138,8 @@ export const SECTION1_LEVELS: LevelConfig[] = [
     goalCriteria: { minOrangeMajority: 0, minGreenMajority: 5, label: 'Maximize Green' },
     dotRadius: 18,
     cellSize: 60,
+    successTitle: 'CRACKING',
+    successMessage: 'This is a redistricting technique called "cracking." By splitting the orange dots into majority green dot districts, you keep orange dots from being represented.',
   },
   {
     id: 'gerry-3',
@@ -144,6 +150,8 @@ export const SECTION1_LEVELS: LevelConfig[] = [
     goalCriteria: { minOrangeMajority: 2, minGreenMajority: 3, label: 'Fair' },
     dotRadius: 18,
     cellSize: 60,
+    successTitle: 'FAIR',
+    successMessage: 'Great! Now the districts are fair! Three out of five are majority green and two out of five are majority orange. These districts represent the actual proportion of dots.',
   },
 ];
 
@@ -163,6 +171,8 @@ export const SECTION2_LEVELS: LevelConfig[] = [
     goalCriteria: { minOrangeMajority: 0, minGreenMajority: 7, label: 'Maximize Green' },
     dotRadius: 12,
     cellSize: 36,
+    successTitle: 'Diluting Black Votes',
+    successMessage: 'In this example the orange dots represent the number of Black people in Alabama. Some people want to draw the maps this way to dilute Black people\'s voting power.',
   },
   {
     id: 'alabama-2',
@@ -173,6 +183,8 @@ export const SECTION2_LEVELS: LevelConfig[] = [
     goalCriteria: { minOrangeMajority: 1, minGreenMajority: 6, label: 'Six Green + One Orange' },
     dotRadius: 12,
     cellSize: 36,
+    successTitle: 'Happening Now',
+    successMessage: 'The maps the Alabama legislature voted to use in 2026 is like this one: allowing a single Black majority district while spreading other Black voters into other districts to dilute their voting power.',
   },
   {
     id: 'alabama-3',
@@ -183,5 +195,7 @@ export const SECTION2_LEVELS: LevelConfig[] = [
     goalCriteria: { minOrangeMajority: 2, minGreenMajority: 5, label: 'Fair' },
     dotRadius: 12,
     cellSize: 36,
+    successTitle: 'What We Need',
+    successMessage: 'This is our goal! The Voting Rights Act protected the rights of Black voters in Alabama to be fairly represented. We deserve fair maps!',
   },
 ];

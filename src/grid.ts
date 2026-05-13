@@ -122,6 +122,42 @@ export function createGrid(container: HTMLElement, config: LevelConfig): GridCon
 
   container.appendChild(card);
 
+  function showPopup(message: string, title?: string): void {
+    // Prevent duplicate popups
+    if (card.querySelector('.popup-overlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'popup-overlay';
+
+    const popup = document.createElement('div');
+    popup.className = 'popup-card';
+
+    if (title) {
+      const titleEl = document.createElement('h3');
+      titleEl.className = 'popup-title';
+      titleEl.textContent = title;
+      popup.appendChild(titleEl);
+    }
+
+    const msg = document.createElement('p');
+    msg.className = 'popup-message';
+    msg.textContent = message;
+    popup.appendChild(msg);
+
+    const btn = document.createElement('button');
+    btn.className = 'popup-close-btn';
+    btn.textContent = 'Got it';
+    btn.addEventListener('click', () => overlay.remove());
+    popup.appendChild(btn);
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) overlay.remove();
+    });
+
+    overlay.appendChild(popup);
+    card.appendChild(overlay);
+  }
+
   function updatePickerHighlight(): void {
     districtBtns.forEach((btn, i) => {
       btn.classList.toggle('active', i === state.activeDistrict);
@@ -174,6 +210,9 @@ export function createGrid(container: HTMLElement, config: LevelConfig): GridCon
       if (passed) {
         statusMsg = `<br><span class="result-summary">${summary}</span>`
           + `<br><strong class="result-pass">Goal achieved!</strong>`;
+        if (config.successMessage) {
+          showPopup(config.successMessage, config.successTitle);
+        }
       } else {
         statusMsg = `<br><span class="result-summary">${summary}</span>`
           + `<br><strong class="result-fail">Goal not met — try again!</strong>`;

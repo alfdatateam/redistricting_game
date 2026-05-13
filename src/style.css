@@ -136,6 +136,7 @@ h1 {
 
 /* Grid card (one grid unit) */
 .grid-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -212,6 +213,63 @@ h1 {
 .reset-btn:hover {
   background: #005067;
   color: #fff;
+}
+
+/* --- Success Popup --- */
+.popup-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border-radius: 8px;
+}
+
+.popup-card {
+  background: #fff;
+  padding: 28px 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  max-width: 320px;
+  width: 85%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.popup-title {
+  font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #cb0034;
+}
+
+.popup-message {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #005067;
+  font-weight: 500;
+}
+
+.popup-close-btn {
+  padding: 10px 28px;
+  border: none;
+  border-radius: 6px;
+  background: #005067;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.popup-close-btn:hover {
+  background: #003d4f;
 }
 
 /* --- Swiper --- */
