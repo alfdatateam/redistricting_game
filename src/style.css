@@ -217,6 +217,7 @@ h1 {
 .swiper-slides {
   display: flex;
   transition: transform 0.3s ease;
+  touch-action: pan-y;
 }
 
 .swiper-slide {
