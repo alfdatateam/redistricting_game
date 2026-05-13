@@ -6,6 +6,15 @@ import stfLogo from './assets/stf-logo.png';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
+// --- Banner ---
+const banner = document.createElement('a');
+banner.href = 'https://alforward.branch.vote';
+banner.target = '_blank';
+banner.rel = 'noopener noreferrer';
+banner.className = 'top-banner';
+banner.textContent = 'See what\u2019s on your ballot at alforward.branch.vote';
+app.appendChild(banner);
+
 // --- Logo ---
 const logo = document.createElement('img');
 logo.src = stfLogo;
