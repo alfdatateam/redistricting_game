@@ -17,7 +17,7 @@ export function createSwiper(parent: HTMLElement, numSlides: number): SwiperCont
   for (let i = 0; i < numSlides; i++) {
     const btn = document.createElement('button');
     btn.className = 'swiper-tab';
-    btn.textContent = String(i + 1);
+    btn.textContent = `Level ${i + 1}`;
     btn.addEventListener('click', () => goTo(i));
     tabs.appendChild(btn);
     tabBtns.push(btn);
