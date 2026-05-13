@@ -36,13 +36,13 @@ export function createSwiper(parent: HTMLElement, numSlides: number): SwiperCont
   let startY = 0;
   let tracking = false;
 
-  slidesContainer.addEventListener('touchstart', (e: TouchEvent) => {
+  wrapper.addEventListener('touchstart', (e: TouchEvent) => {
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
     tracking = true;
   }, { passive: true });
 
-  slidesContainer.addEventListener('touchend', (e: TouchEvent) => {
+  wrapper.addEventListener('touchend', (e: TouchEvent) => {
     if (!tracking) return;
     tracking = false;
     const dx = e.changedTouches[0].clientX - startX;
