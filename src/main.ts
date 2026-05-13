@@ -71,5 +71,5 @@ app.appendChild(section2);
 // --- Footer ---
 const footer = document.createElement('footer');
 footer.className = 'site-footer';
-footer.textContent = 'Created by Alabama Forward';
+footer.textContent = 'Created by Shake the Field';
 app.appendChild(footer);

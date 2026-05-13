@@ -37,7 +37,7 @@ body {
   text-align: center;
   font-weight: 700;
   font-size: 14px;
-  text-decoration: none;
+  text-decoration: underline;
   letter-spacing: 0.02em;
 }
 
