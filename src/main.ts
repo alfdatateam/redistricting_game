@@ -67,3 +67,9 @@ for (const level of SECTION2_LEVELS) {
 }
 
 app.appendChild(section2);
+
+// --- Footer ---
+const footer = document.createElement('footer');
+footer.className = 'site-footer';
+footer.textContent = 'Created by Alabama Forward';
+app.appendChild(footer);

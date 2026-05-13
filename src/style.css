@@ -27,6 +27,36 @@ body {
   position: relative;
 }
 
+/* Top banner */
+.top-banner {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 10px 16px;
+  background: #005067;
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.top-banner:hover {
+  background: #003d4f;
+}
+
+/* Footer */
+.site-footer {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 20px 16px;
+  background: #005067;
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
 /* STF Logo */
 .stf-logo {
   position: absolute;
