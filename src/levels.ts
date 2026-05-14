@@ -184,7 +184,7 @@ export const SECTION2_LEVELS: LevelConfig[] = [
     dotRadius: 12,
     cellSize: 36,
     successTitle: 'Happening Now',
-    successMessage: 'The maps the Alabama legislature voted to use in 2026 is like this one: allowing a single Black majority district while spreading other Black voters into other districts to dilute their voting power.',
+    successMessage: 'The maps the Alabama legislature voted to use in 2026 is like this one. It allows a single Black majority district while spreading other Black voters into other districts to dilute their voting power.',
   },
   {
     id: 'alabama-3',
