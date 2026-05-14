@@ -105,9 +105,23 @@ h1 {
 /* District selector */
 .district-picker {
   display: flex;
-  gap: 6px;
+  gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.district-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.district-count {
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  line-height: 1.2;
 }
 
 .district-btn {
@@ -176,8 +190,11 @@ h1 {
 .feedback {
   font-size: 13px;
   text-align: center;
-  min-height: 36px;
   line-height: 1.4;
+}
+
+.feedback:empty {
+  display: none;
 }
 
 .feedback .count {
@@ -213,6 +230,50 @@ h1 {
 .reset-btn:hover {
   background: #005067;
   color: #fff;
+}
+
+/* --- Learn More Dropdown --- */
+.hint-toggle {
+  padding: 6px 16px;
+  border: none;
+  background: transparent;
+  color: #005067;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.hint-toggle:hover {
+  color: #cb0034;
+}
+
+.hint-content {
+  display: none;
+  max-width: 320px;
+  text-align: center;
+  padding: 8px 12px;
+}
+
+.hint-content.open {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hint-title {
+  font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #cb0034;
+}
+
+.hint-message {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #005067;
+  font-weight: 500;
 }
 
 /* --- Success Popup --- */

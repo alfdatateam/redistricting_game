@@ -46,11 +46,15 @@ export function createGrid(container: HTMLElement, config: LevelConfig): GridCon
   goalEl.textContent = config.goal;
   card.appendChild(goalEl);
 
-  // District picker
+  // District picker with stacked counts
   const pickerEl = document.createElement('div');
   pickerEl.className = 'district-picker';
   const districtBtns: HTMLButtonElement[] = [];
+  const districtCountEls: HTMLSpanElement[] = [];
   for (let i = 0; i < config.numDistricts; i++) {
+    const col = document.createElement('div');
+    col.className = 'district-col';
+
     const btn = document.createElement('button');
     btn.className = 'district-btn';
     btn.style.background = DISTRICT_COLORS[i % DISTRICT_COLORS.length];
@@ -59,8 +63,16 @@ export function createGrid(container: HTMLElement, config: LevelConfig): GridCon
       state.activeDistrict = i;
       updatePickerHighlight();
     });
-    pickerEl.appendChild(btn);
+    col.appendChild(btn);
+
+    const countEl = document.createElement('span');
+    countEl.className = 'district-count';
+    countEl.style.color = DISTRICT_COLORS[i % DISTRICT_COLORS.length];
+    col.appendChild(countEl);
+
+    pickerEl.appendChild(col);
     districtBtns.push(btn);
+    districtCountEls.push(countEl);
   }
   card.appendChild(pickerEl);
 
@@ -119,6 +131,36 @@ export function createGrid(container: HTMLElement, config: LevelConfig): GridCon
     updateVisuals();
   });
   card.appendChild(resetBtn);
+
+  // Learn More dropdown
+  if (config.successMessage) {
+    const hintToggle = document.createElement('button');
+    hintToggle.className = 'hint-toggle';
+    hintToggle.textContent = 'Learn More ▸';
+
+    const hintContent = document.createElement('div');
+    hintContent.className = 'hint-content';
+
+    if (config.successTitle) {
+      const hintTitle = document.createElement('h4');
+      hintTitle.className = 'hint-title';
+      hintTitle.textContent = config.successTitle;
+      hintContent.appendChild(hintTitle);
+    }
+
+    const hintMsg = document.createElement('p');
+    hintMsg.className = 'hint-message';
+    hintMsg.textContent = config.successMessage;
+    hintContent.appendChild(hintMsg);
+
+    hintToggle.addEventListener('click', () => {
+      const open = hintContent.classList.toggle('open');
+      hintToggle.textContent = open ? 'Learn More ▾' : 'Learn More ▸';
+    });
+
+    card.appendChild(hintToggle);
+    card.appendChild(hintContent);
+  }
 
   container.appendChild(card);
 
@@ -191,14 +233,15 @@ export function createGrid(container: HTMLElement, config: LevelConfig): GridCon
       }
     }
 
-    // Update feedback
+    // Update per-district counts beneath each button
     const counts = state.getCounts();
-    const feedbackLines = counts.map((c: number, i: number) => {
+    counts.forEach((c: number, i: number) => {
       const maj = state.getDistrictMajority(i);
       const majLabel = maj === 'orange' ? ' 🟠' : maj === 'green' ? ' 🟢' : maj === 'tie' ? ' =' : '';
-      return `<span class="count" style="color:${DISTRICT_COLORS[i % DISTRICT_COLORS.length]}">D${i + 1}: ${c}/${config.dotsPerDistrict}${majLabel}</span>`;
-    }).join(' ');
+      districtCountEls[i].textContent = `${c}/${config.dotsPerDistrict}${majLabel}`;
+    });
 
+    // Update completion status
     let statusMsg = '';
     if (state.isComplete()) {
       const majorities = state.getMajorityCounts();
@@ -208,18 +251,18 @@ export function createGrid(container: HTMLElement, config: LevelConfig): GridCon
 
       const summary = `Orange majority: ${majorities.orange} · Green majority: ${majorities.green}`;
       if (passed) {
-        statusMsg = `<br><span class="result-summary">${summary}</span>`
+        statusMsg = `<span class="result-summary">${summary}</span>`
           + `<br><strong class="result-pass">Goal achieved!</strong>`;
         if (config.successMessage) {
           showPopup(config.successMessage, config.successTitle);
         }
       } else {
-        statusMsg = `<br><span class="result-summary">${summary}</span>`
+        statusMsg = `<span class="result-summary">${summary}</span>`
           + `<br><strong class="result-fail">Goal not met — try again!</strong>`;
       }
     }
 
-    feedbackEl.innerHTML = feedbackLines + statusMsg;
+    feedbackEl.innerHTML = statusMsg;
   }
 
   // Init
